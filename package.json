@@ -1,0 +1,27 @@
+{
+  "name": "polygon-points",
+  "version": "0.0.1",
+  "description": "Determine if an x y coordinate exists in a polygon.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kevinGodell/polygon-points.git"
+  },
+  "keywords": [
+    "point",
+    "polygon",
+    "pixel",
+    "region",
+    "motion",
+    "detection"
+  ],
+  "author": "Kevin Godell <kevin.godell@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kevinGodell/polygon-points/issues"
+  },
+  "homepage": "https://github.com/kevinGodell/polygon-points#readme"
+}

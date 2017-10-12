@@ -1,2 +1,25 @@
 # polygon-points
-Determine if an x y coordinate exists in a polygon.
+Determine if an x y coordinate exists in a polygon. This is being used in a motion detection project where specific regions of an image are being filtered and measured. It works fast when iterating pixels because it caches the bounding box value and uses it to quickly eliminate non-targeted pixels from unnecessary difference calculations. It is designed to be used with positive integer values starting with an x y value of 0 0 at the top left.
+
+### installation:
+``` 
+npm install polygon-points --save
+```
+
+### usage:
+```
+const PP = require('polygon-points');
+
+const polygonPoints = new PP([[0, 0], [0, 100], [100, 100], [100, 0]]);
+
+//public methods
+
+//check if a point exists in the polygon
+polygonPoints.containsPoint([1, 1]);//returns true
+
+//get bounding box of polygon
+polygonPoints.boundingBox();//returns an array of 4 x y coordinates
+
+//get total number of points that exist in polygon
+polygonPoints.pointsLength()//returns 10000
+```
