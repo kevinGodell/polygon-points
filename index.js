@@ -55,6 +55,7 @@ PolygonPoints.prototype.pointsLength = function () {
 };
 
 PolygonPoints.prototype.containsPoint = function (point) {
+    //algorithm based on http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html
     const x = point[0];
     const y = point[1];
     if (x < this._minX || x > this._maxX || y < this._minY || y > this._maxY) {
