@@ -21,5 +21,5 @@ polygonPoints.containsPoint([1, 1]);//returns true
 polygonPoints.boundingBox();//returns an array of 4 x y coordinates
 
 //get total number of points that exist in polygon
-polygonPoints.pointsLength()//returns 10000
+polygonPoints.pointsLength();//returns 10000
 ```
