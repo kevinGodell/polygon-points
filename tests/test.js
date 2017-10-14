@@ -3,7 +3,7 @@
 
 console.time('complete');
 
-var assert = require('assert');
+const assert = require('assert');
 
 const PP = require('../index');
 
