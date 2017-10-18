@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/kevinGodell/polygon-points.svg?branch=master)](https://travis-ci.org/kevinGodell/polygon-points)
 # polygon-points
 Determine if an x y coordinate exists in a polygon. This is being used in a motion detection project where specific regions of an image are being filtered and measured. It works fast when iterating pixels because it caches the bounding box value and uses it to quickly eliminate non-targeted pixels from unnecessary difference calculations. It is designed to be used with positive integer values starting with an x y value of 0 0 at the top left.
 
