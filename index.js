@@ -10,8 +10,10 @@ PolygonPoints.prototype._checkVertexes = function (vertexes) {
         throw new Error('Polygon needs at least 3 sets of x y vertexes.');
     }
     for (const vertex of vertexes) {
-        if (!Array.isArray(vertex) || vertex.length !== 2 || vertex[0] < 0 || vertex[1] < 0) {
-            throw new Error('Each vertex of the polygon must consist of an array of 2 unsigned integers.');
+        const x = vertex.x;
+        const y = vertex.y;
+        if (x < 0 || y < 0 || parseInt(x) !== x || parseInt(y) !== y) {
+            throw new Error('Each vertex of the polygon must consist of an object with an x and y unsigned integer.');
         }
     }
     this._vertexes = vertexes;
@@ -21,24 +23,24 @@ PolygonPoints.prototype._checkVertexes = function (vertexes) {
 };
 
 PolygonPoints.prototype._calculateBoundingBox = function () {
-    this._maxX = this._vertexes[0][0];
-    this._minX = this._vertexes[0][0];
-    this._maxY = this._vertexes[0][1];
-    this._minY = this._vertexes[0][1];
+    this._maxX = this._vertexes[0].x;
+    this._minX = this._vertexes[0].x;
+    this._maxY = this._vertexes[0].y;
+    this._minY = this._vertexes[0].y;
     for (let i = 1; i < this._vertexesLength; i++) {
-        this._maxX = Math.max(this._maxX, this._vertexes[i][0]);
-        this._minX = Math.min(this._minX, this._vertexes[i][0]);
-        this._maxY = Math.max(this._maxY, this._vertexes[i][1]);
-        this._minY = Math.min(this._minY, this._vertexes[i][1]);
+        this._maxX = Math.max(this._maxX, this._vertexes[i].x);
+        this._minX = Math.min(this._minX, this._vertexes[i].x);
+        this._maxY = Math.max(this._maxY, this._vertexes[i].y);
+        this._minY = Math.min(this._minY, this._vertexes[i].y);
     }
-    this._boundingBox = [[this._minX, this._minY], [this._minX, this._maxY], [this._maxX, this._maxY], [this._maxX, this._minY]];
+    this._boundingBox = [{x: this._minX, y: this._minY}, {x :this._minX, y: this._maxY}, {x: this._maxX, y: this._maxY}, {x: this._maxX, y: this._minY}];
 };
 
 PolygonPoints.prototype._countPointsInPolygon = function () {
     let counter = 0;
     for (let y = this._minY; y < this._maxY; y++) {
         for (let x = this._minX; x < this._maxX; x++) {
-            if (this.containsPoint([x, y]) === true) {
+            if (this.containsPoint({x: x, y: y}) === true) {
                 counter++;
             }
         }
@@ -56,8 +58,8 @@ PolygonPoints.prototype.pointsLength = function () {
 
 PolygonPoints.prototype.containsPoint = function (point) {
     //algorithm based on http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html
-    const x = point[0];
-    const y = point[1];
+    const x = point.x;
+    const y = point.y;
     if (x < this._minX || x > this._maxX || y < this._minY || y > this._maxY) {
         return false;
     }
@@ -65,13 +67,13 @@ PolygonPoints.prototype.containsPoint = function (point) {
     const length = this._vertexesLength;
     const array = this._vertexes;
     for (let i = 0, j = length - 1; i < length; j = i++) {
-        const xi = array[i][0];
-        const yi = array[i][1];
+        const xi = array[i].x;
+        const yi = array[i].y;
         if (x === xi && y === yi) {
             return true;
         }
-        const xj = array[j][0];
-        const yj = array[j][1];
+        const xj = array[j].x;
+        const yj = array[j].y;
         const intersect = ((yi > y) !== (yj > y)) && (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
         if (intersect) {
             inside = !inside;
