@@ -17,8 +17,11 @@ const polygonPoints = new PP([{x: 0, y: 0}, {x: 0, y: 100}, {x: 100, y: 100}, {x
 polygonPoints.containsPoint({x: 1, y: 1});//returns true
 
 //get bounding box of polygon
-polygonPoints.boundingBox();//returns an array of 4 x y coordinates
+polygonPoints.boundingBox;//returns an array of 4 x y coordinates
 
 //get total number of points that exist in polygon
-polygonPoints.pointsLength();//returns 10000
+polygonPoints.pointsLength;//returns 10000
+
+//set vertexes after creating polygonPoints object
+polygonPoints.vertexes = [{x: 0, y: 0}, {x: 0, y: 100}, {x: 100, y: 100}, {x: 100, y: 0}];
 ```
