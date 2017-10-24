@@ -50,7 +50,7 @@ PolygonPoints.prototype._countPointsInPolygon = function () {
     this._pointsLength = 0;
     for (let y = this._minY; y < this._maxY; y++) {
         for (let x = this._minX; x < this._maxX; x++) {
-            if (this.containsPoint({x: x, y: y}) === true) {
+            if (this.containsPoint(x, y) === true) {
                 this._pointsLength++;
             }
         }
@@ -58,10 +58,8 @@ PolygonPoints.prototype._countPointsInPolygon = function () {
     return this._pointsLength;
 };
 
-PolygonPoints.prototype.containsPoint = function (point) {
+PolygonPoints.prototype.containsPoint = function (x, y) {
     //algorithm based on http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html
-    const x = point.x;
-    const y = point.y;
     if (x < this._minX || x > this._maxX || y < this._minY || y > this._maxY) {
         return false;
     }
