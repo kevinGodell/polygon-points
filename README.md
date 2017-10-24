@@ -14,7 +14,7 @@ const polygonPoints = new PP([{x: 0, y: 0}, {x: 0, y: 100}, {x: 100, y: 100}, {x
 //public methods
 
 //check if a point exists in the polygon
-polygonPoints.containsPoint({x: 1, y: 1});//returns true
+polygonPoints.containsPoint(1, 1);//returns true
 
 //get bounding box of polygon
 polygonPoints.boundingBox;//returns an array of 4 x y coordinates
