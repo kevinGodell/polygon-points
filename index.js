@@ -5,6 +5,22 @@ function PolygonPoints (vertexes) {
     this._checkVertexes(vertexes);
 }
 
+PolygonPoints.prototype = {
+    get pointsLength () {
+        return this._pointsLength || this._countPointsInPolygon();
+    },
+    get boundingBox () {
+        return [{x: this._minX, y: this._minY}, {x :this._minX, y: this._maxY}, {x: this._maxX, y: this._maxY}, {x: this._maxX, y: this._minY}];
+    },
+    set vertexes (value) {
+        this._checkVertexes(value);
+        delete this._pointsLength;
+    },
+    get vertexes () {
+        return this._vertexes;
+    }
+};
+
 PolygonPoints.prototype._checkVertexes = function (vertexes) {
     if (!Array.isArray(vertexes) || vertexes.length < 3) {
         throw new Error('Polygon needs at least 3 sets of x y vertexes.');
@@ -18,11 +34,6 @@ PolygonPoints.prototype._checkVertexes = function (vertexes) {
     }
     this._vertexes = vertexes;
     this._vertexesLength = vertexes.length;
-    this._calculateBoundingBox();
-    this._countPointsInPolygon();
-};
-
-PolygonPoints.prototype._calculateBoundingBox = function () {
     this._maxX = this._vertexes[0].x;
     this._minX = this._vertexes[0].x;
     this._maxY = this._vertexes[0].y;
@@ -33,26 +44,17 @@ PolygonPoints.prototype._calculateBoundingBox = function () {
         this._maxY = Math.max(this._maxY, this._vertexes[i].y);
         this._minY = Math.min(this._minY, this._vertexes[i].y);
     }
-    this._boundingBox = [{x: this._minX, y: this._minY}, {x :this._minX, y: this._maxY}, {x: this._maxX, y: this._maxY}, {x: this._maxX, y: this._minY}];
 };
 
 PolygonPoints.prototype._countPointsInPolygon = function () {
-    let counter = 0;
+    this._pointsLength = 0;
     for (let y = this._minY; y < this._maxY; y++) {
         for (let x = this._minX; x < this._maxX; x++) {
             if (this.containsPoint({x: x, y: y}) === true) {
-                counter++;
+                this._pointsLength++;
             }
         }
     }
-    this._pointsLength = counter;
-};
-
-PolygonPoints.prototype.boundingBox = function () {
-    return this._boundingBox;
-};
-
-PolygonPoints.prototype.pointsLength = function () {
     return this._pointsLength;
 };
 
@@ -69,9 +71,6 @@ PolygonPoints.prototype.containsPoint = function (point) {
     for (let i = 0, j = length - 1; i < length; j = i++) {
         const xi = array[i].x;
         const yi = array[i].y;
-        if (x === xi && y === yi) {
-            return true;
-        }
         const xj = array[j].x;
         const yj = array[j].y;
         const intersect = ((yi > y) !== (yj > y)) && (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
@@ -83,4 +82,3 @@ PolygonPoints.prototype.containsPoint = function (point) {
 };
 
 module.exports = PolygonPoints;
-//todo check if point is on edge of polygon
