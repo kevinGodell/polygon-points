@@ -12,7 +12,7 @@ install:
   - npm install
   - ps: Start-FileDownload 'https://ffmpeg.zeranoe.com/builds/win64/static/ffmpeg-3.4.1-win64-static.zip'
   - 7z e ffmpeg-3.4.1-win64-static.zip ff
-  - cd ff
+  #- cd ff
   - dir /s
 
 test_script:
