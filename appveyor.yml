@@ -10,10 +10,8 @@ platform:
 install:
   - ps: Install-Product node $env:nodejs_version $env:platform
   - npm install
-  #probaby have to install ffmpeg at this point
 
 test_script:
-  - ffmpeg -version
   - node --version
   - npm --version
   - npm test
