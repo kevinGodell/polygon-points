@@ -4,10 +4,7 @@ environment:
   matrix:
     #- nodejs_version: "8"
     - nodejs_version: "Current"
-
-platform:
-  #- x86
-  - x64
+    - platform: x64
     var1 : something
 
 install:
