@@ -1,17 +1,17 @@
 version: 0.5.0-{build}
 image: Visual Studio 2017
-environment:
-  matrix:
-    - nodejs_version: "8"
-    - nodejs_version: "Current"
+#environment:
+  #matrix:
+   # - nodejs_version: "8"
+    #- nodejs_version: "Current"
 
-platform:
-  - x86:
-    ffmpeg_url:"https://ffmpeg.zeranoe.com/builds/win32/static/ffmpeg-3.4.1-win32-static.zip"
-    ffmpeg_ver:"3.4.1-win32-static"
-  - x64:
-    ffmpeg_url:"https://ffmpeg.zeranoe.com/builds/win64/static/ffmpeg-3.4.1-win64-static.zip"
-    ffmpeg_ver:"3.4.1-win64-static"
+#platform:
+  #- x86
+    #ffmpeg_url:"https://ffmpeg.zeranoe.com/builds/win32/static/ffmpeg-3.4.1-win32-static.zip"
+    #3ffmpeg_ver:"3.4.1-win32-static"
+  #- x64
+    #ffmpeg_url:"https://ffmpeg.zeranoe.com/builds/win64/static/ffmpeg-3.4.1-win64-static.zip"
+    #ffmpeg_ver:"3.4.1-win64-static"
 
 #environment:
 #  matrix:
@@ -20,20 +20,24 @@ platform:
 #    - ffmpeg_url: "https://ffmpeg.zeranoe.com/builds/win64/static/ffmpeg-3.4.1-win64-static.zip"
 #    - ffmpeg_ver: "3.4.1-wind64-static"
 
-#environment:
-  #global:
-    #nodejs_version: "Current"
-  #matrix:
-    #- platform: x64
-      #ffmpeg_url: https://ffmpeg.zeranoe.com/builds/win64/static/ffmpeg-3.4.1-win64-static.zip
-      #ffmpeg_ver: 3.4.1-win64-static
-        #- nodejs_version: 8
-        #- nodejs_version: Current
-    #- platform: x86
-      #ffmpeg_url: https://ffmpeg.zeranoe.com/builds/win32/static/ffmpeg-3.4.1-win32-static.zip
-      #ffmpeg_ver: 3.4.1-win32-static
-        #- nodejs_version: 8
-        #- nodejs_version: Current
+environment:
+  matrix:
+    - platform: x64
+      ffmpeg_url: https://ffmpeg.zeranoe.com/builds/win64/static/ffmpeg-3.4.1-win64-static.zip
+      ffmpeg_ver: 3.4.1-win64-static
+      nodejs_version: 8
+    - platform: x64
+      ffmpeg_url: https://ffmpeg.zeranoe.com/builds/win64/static/ffmpeg-3.4.1-win64-static.zip
+      ffmpeg_ver: 3.4.1-win64-static
+      nodejs_version: Current
+    - platform: x86
+      ffmpeg_url: https://ffmpeg.zeranoe.com/builds/win32/static/ffmpeg-3.4.1-win32-static.zip
+      ffmpeg_ver: 3.4.1-win32-static
+      nodejs_version: 8
+    - platform: x86
+      ffmpeg_url: https://ffmpeg.zeranoe.com/builds/win32/static/ffmpeg-3.4.1-win32-static.zip
+      ffmpeg_ver: 3.4.1-win32-static
+      nodejs_version: Current
 
 install:
   - ps: Install-Product node $env:nodejs_version $env:platform
