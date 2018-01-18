@@ -28,8 +28,8 @@ install:
   - ps: Install-Product node $env:nodejs_version $env:platform
   - npm install
   - ps: Start-FileDownload $env:ffmpeg_url
-  - 7z x ffmpeg-3.4.1-win64-static.zip
-  - PATH=%PATH%;%cd%\ffmpeg-3.4.1-win64-static\bin
+  - 7z x ffmpeg-%ffmpeg_ver%.zip
+  - PATH=%PATH%;%cd%\ffmpeg-%ffmpeg_ver%\bin
   - ffmpeg -version
   - SET
 
