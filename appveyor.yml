@@ -16,6 +16,7 @@ install:
   - 7z x ffmpeg-3.4.1-win64-static.zip
   - PATH=%PATH%;%cd%\ffmpeg-3.4.1-win64-static\bin
   - ffmpeg -version
+  - SET
 
 test_script:
   - node --version
