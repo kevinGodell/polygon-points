@@ -4,7 +4,8 @@
   "description": "Determine if an x y coordinate exists in a polygon.",
   "main": "index.js",
   "scripts": {
-    "test": "node tests/test.js"
+    "test": "node tests/test.js",
+    "preversion": "npm test"
   },
   "repository": {
     "type": "git",
