@@ -5,9 +5,9 @@ environment:
     #- nodejs_version: "8"
     - nodejs_version: "Current"
 
-  platform:
-    #- x86
-    - x64
+platform:
+  #- x86
+  - x64
 
 install:
   - ps: Install-Product node $env:nodejs_version $env:platform
@@ -16,7 +16,6 @@ install:
   - 7z x ffmpeg-3.4.1-win64-static.zip
   - PATH=%PATH%;%cd%\ffmpeg-3.4.1-win64-static\bin
   - ffmpeg -version
-  - SET
 
 test_script:
   - node --version
