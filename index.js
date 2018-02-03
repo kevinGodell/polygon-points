@@ -80,6 +80,21 @@ class PolygonPoints {
         }
         return inside;
     }
+
+    getBitset(width, height) {
+        const length = width * height;
+        const buffer = Buffer.alloc(length, 0);
+        let count = 0;
+        for (let y = 0, i = 0; y < width; y++) {
+            for (let x = 0; x < width; x++, i++) {
+                if (this.containsPoint(x, y) === true) {
+                    buffer[i] = true;
+                    count++;
+                }
+            }
+        }
+        return {buffer: buffer, count: count, length: length};
+    }
 }
 
 module.exports = PolygonPoints;
