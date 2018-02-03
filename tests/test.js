@@ -24,6 +24,24 @@ assert(polygonPoints.containsPoint(101, 0) === false);
 
 assert(polygonPoints.boundingBox[3].x === 100);
 
+let bitset = polygonPoints.getBitset(120, 120);
+
+let buffer = bitset.buffer;
+
+let count = bitset.count;
+
+let length = bitset.length;
+
+let counter = 0;
+
+for (let i = 0; i < length; i++) {
+    if (buffer[i]) {
+        counter++;
+    }
+}
+
+assert(counter === count);
+
 console.timeEnd('test 1');
 
 /*****************************************************************/
@@ -43,6 +61,24 @@ assert(polygonPoints.containsPoint(10, 10) === true);
 assert(polygonPoints.containsPoint(101, 0) === false);
 
 assert(polygonPoints.boundingBox[2].y === 50);
+
+bitset = polygonPoints.getBitset(120, 120);
+
+buffer = bitset.buffer;
+
+count = bitset.count;
+
+length = bitset.length;
+
+counter = 0;
+
+for (let i = 0; i < length; i++) {
+    if (buffer[i]) {
+        counter++;
+    }
+}
+
+assert(counter === count);
 
 console.timeEnd('test 2');
 
@@ -64,6 +100,24 @@ assert(polygonPoints.containsPoint(101, 0) === false);
 
 assert(polygonPoints.boundingBox[2].y === 100);
 
+bitset = polygonPoints.getBitset(120, 120);
+
+buffer = bitset.buffer;
+
+count = bitset.count;
+
+length = bitset.length;
+
+counter = 0;
+
+for (let i = 0; i < length; i++) {
+    if (buffer[i]) {
+        counter++;
+    }
+}
+
+assert(counter === count);
+
 console.timeEnd('test 3');
 
 /*****************************************************************/
@@ -84,7 +138,63 @@ assert(polygonPoints.containsPoint(101, 0) === false);
 
 assert(polygonPoints.boundingBox[2].y === 150);
 
+bitset = polygonPoints.getBitset(120, 120);
+
+buffer = bitset.buffer;
+
+count = bitset.count;
+
+length = bitset.length;
+
+counter = 0;
+
+for (let i = 0; i < length; i++) {
+    if (buffer[i]) {
+        counter++;
+    }
+}
+
+assert(counter === count);
+
 console.timeEnd('test 4');
+
+/*****************************************************************/
+
+vertexes = [{x: 50, y: 0}, {x: 100, y: 0}, {x: 100, y: 100}, {x: 50, y: 100}, {x: 75, y: 75}];
+
+polygonPoints.vertexes = vertexes;
+
+console.time('test 5');
+
+assert(polygonPoints.pointsLength === 3725);
+
+assert(polygonPoints.containsPoint(0, 0) === false);
+
+assert(polygonPoints.containsPoint(10, 10) === false);
+
+assert(polygonPoints.containsPoint(101, 0) === false);
+
+assert(polygonPoints.boundingBox[2].y === 100);
+
+bitset = polygonPoints.getBitset(120, 120);
+
+buffer = bitset.buffer;
+
+count = bitset.count;
+
+length = bitset.length;
+
+counter = 0;
+
+for (let i = 0; i < length; i++) {
+    if (buffer[i]) {
+        counter++;
+    }
+}
+
+assert(counter === count);
+
+console.timeEnd('test 5');
 
 /*****************************************************************/
 
