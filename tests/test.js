@@ -199,3 +199,11 @@ console.timeEnd('test 5');
 /*****************************************************************/
 
 console.timeEnd('complete');
+
+const os = require('os');
+console.log('os.type():', os.type());
+console.log('os.release():', os.release());
+console.log('os.platform():', os.platform());
+console.log('os.arch():', os.arch());
+console.log('process.arch', process.arch);
+console.log('process.platform', process.platform);
