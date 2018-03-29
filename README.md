@@ -6,7 +6,7 @@ Determine if an x y coordinate exists in a polygon. This is being used in a moti
 npm install polygon-points --save
 ```
 ### usage:
-```
+```javascript
 const PP = require('polygon-points');
 
 const polygonPoints = new PP([{x: 0, y: 0}, {x: 0, y: 100}, {x: 100, y: 100}, {x: 100, y: 0}]);
