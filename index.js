@@ -2,27 +2,57 @@
 
 class PolygonPoints {
 
+    /**
+     *
+     * @param {Array} vertexes - Array of objects containing x and y value.
+     */
     constructor(vertexes) {
         this._checkVertexes(vertexes);
     }
 
+    /**
+     *
+     * Get the total number of x y points that exist in polygon.
+     * @readonly
+     * @returns {Number}
+     */
     get pointsLength() {
         return this._pointsLength || this._countPointsInPolygon();
     }
 
+    /**
+     *
+     * Get the bounding box as an array of x y coordinates.
+     * @readonly
+     * @returns {Array}
+     */
     get boundingBox() {
         return [{x: this._minX, y: this._minY}, {x :this._minX, y: this._maxY}, {x: this._maxX, y: this._maxY}, {x: this._maxX, y: this._minY}];
     }
 
+    /**
+     * @ignore
+     * @param {Array} value - Array of objects containing x and y value.
+     */
     set vertexes(value) {
         this._checkVertexes(value);
         delete this._pointsLength;
     }
 
+    /**
+     *
+     * Get or set the array of vertexes.
+     * @returns {Array}
+     */
     get vertexes() {
-        return this._vertexes;
+        return this._vertexes || [];
     }
 
+    /**
+     *
+     * @param {Array} vertexes - Array of objects containing x and y value.
+     * @private
+     */
     _checkVertexes(vertexes) {
         if (!Array.isArray(vertexes) || vertexes.length < 3) {
             throw new Error('Polygon needs at least 3 sets of x y vertexes.');
@@ -48,6 +78,11 @@ class PolygonPoints {
         }
     }
 
+    /**
+     *
+     * @returns {Number}
+     * @private
+     */
     _countPointsInPolygon() {
         this._pointsLength = 0;
         for (let y = this._minY; y < this._maxY; y++) {
@@ -60,6 +95,13 @@ class PolygonPoints {
         return this._pointsLength;
     }
 
+    /**
+     *
+     * Check if x y point is contained in polygon.
+     * @param {Number} x - x coordinate
+     * @param {Number} y - y coordinate
+     * @returns {Boolean}
+     */
     containsPoint(x, y) {
         //algorithm based on http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html
         if (x < this._minX || x > this._maxX || y < this._minY || y > this._maxY) {
@@ -81,6 +123,13 @@ class PolygonPoints {
         return inside;
     }
 
+    /**
+     *
+     * Get a Buffer of 0's and 1's to indicate if point's index is in polygon.
+     * @param {Number} width - width of coordinates
+     * @param {Number} height - height of coordinates
+     * @returns {{buffer: Buffer, count: number, length: number}}
+     */
     getBitset(width, height) {
         const length = width * height;
         const buffer = Buffer.alloc(length, 0);
@@ -97,4 +146,8 @@ class PolygonPoints {
     }
 }
 
+/**
+ *
+ * @type {PolygonPoints}
+ */
 module.exports = PolygonPoints;
