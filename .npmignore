@@ -4,3 +4,4 @@ tests/
 .travis.yml
 appveyor.yml
 .jshintrc
+docs/
