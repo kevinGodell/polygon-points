@@ -10,7 +10,7 @@ environment:
 cache:
   - node_modules
 install:
-  - cmd: powershell Install-Product node $env:nodejs_version $env:platform
+  - cmd: powershell Install-Product node $env:nodejs_version
   - sh: nvm install $nodejs_version
   - npm install
   - ps: $env:package_version = (Get-Content -Raw -Path package.json | ConvertFrom-Json).version
