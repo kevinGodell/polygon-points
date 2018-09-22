@@ -7,9 +7,6 @@ environment:
     - nodejs_version: 8
     - nodejs_version: 9
     - nodejs_version: 10
-platform:
-  - x86
-  - x64
 cache:
   - node_modules
 install:
@@ -28,7 +25,8 @@ for:
 -
   matrix:
     only:
-      - image: Ubuntu
+      - image: Visual Studio 2017
 
   platform:
-  - x64
+    - x86
+    - x64
