@@ -23,3 +23,12 @@ test_script:
   - npm --version
   - npm test
 build: off
+
+for:
+-
+  matrix:
+    only:
+      - image: Ubuntu
+
+  platform:
+  - x64
