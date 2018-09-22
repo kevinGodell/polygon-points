@@ -7,6 +7,17 @@ environment:
     - nodejs_version: 8
     - nodejs_version: 9
     - nodejs_version: 10
+
+for:
+-
+  matrix:
+    only:
+      - image: Visual Studio 2017
+
+  platform:
+    - x86
+    - x64
+
 cache:
   - node_modules
 install:
@@ -21,12 +32,3 @@ test_script:
   - npm test
 build: off
 
-for:
--
-  matrix:
-    only:
-      - image: Visual Studio 2017
-
-  platform:
-    - x86
-    - x64
