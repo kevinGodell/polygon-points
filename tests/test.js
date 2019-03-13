@@ -22,7 +22,17 @@ assert(polygonPoints.containsPoint(10, 10) === true);
 
 assert(polygonPoints.containsPoint(101, 0) === false);
 
-assert(polygonPoints.boundingBox[3].x === 100);
+assert(polygonPoints.boundingBox[3].x === 0);
+
+assert(polygonPoints.boundingBox[3].y === 100);
+
+assert(polygonPoints.minX === 0);
+
+assert(polygonPoints.maxX === 100);
+
+assert(polygonPoints.minY === 0);
+
+assert(polygonPoints.maxY === 100);
 
 let bitset = polygonPoints.getBitset(120, 120);
 
@@ -60,7 +70,17 @@ assert(polygonPoints.containsPoint(10, 10) === true);
 
 assert(polygonPoints.containsPoint(101, 0) === false);
 
-assert(polygonPoints.boundingBox[2].y === 50);
+assert(polygonPoints.boundingBox[3].x === 0);
+
+assert(polygonPoints.boundingBox[3].y === 50);
+
+assert(polygonPoints.minX === 0);
+
+assert(polygonPoints.maxX === 100);
+
+assert(polygonPoints.minY === 0);
+
+assert(polygonPoints.maxY === 50);
 
 bitset = polygonPoints.getBitset(120, 120);
 
@@ -98,7 +118,17 @@ assert(polygonPoints.containsPoint(10, 10) === true);
 
 assert(polygonPoints.containsPoint(101, 0) === false);
 
-assert(polygonPoints.boundingBox[2].y === 100);
+assert(polygonPoints.boundingBox[3].x === 0);
+
+assert(polygonPoints.boundingBox[3].y === 100);
+
+assert(polygonPoints.minX === 0);
+
+assert(polygonPoints.maxX === 100);
+
+assert(polygonPoints.minY === 0);
+
+assert(polygonPoints.maxY === 100);
 
 bitset = polygonPoints.getBitset(120, 120);
 
@@ -136,7 +166,17 @@ assert(polygonPoints.containsPoint(10, 10) === true);
 
 assert(polygonPoints.containsPoint(101, 0) === false);
 
-assert(polygonPoints.boundingBox[2].y === 150);
+assert(polygonPoints.boundingBox[3].x === 0);
+
+assert(polygonPoints.boundingBox[3].y === 150);
+
+assert(polygonPoints.minX === 0);
+
+assert(polygonPoints.maxX === 100);
+
+assert(polygonPoints.minY === 0);
+
+assert(polygonPoints.maxY === 150);
 
 bitset = polygonPoints.getBitset(120, 120);
 
