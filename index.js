@@ -27,7 +27,47 @@ class PolygonPoints {
      * @returns {Array}
      */
     get boundingBox() {
-        return [{x: this._minX, y: this._minY}, {x :this._minX, y: this._maxY}, {x: this._maxX, y: this._maxY}, {x: this._maxX, y: this._minY}];
+        return [{x: this.minX, y: this.minY}, {x: this.maxX, y: this.minY}, {x: this.maxX, y: this.maxY}, {x :this.minX, y: this.maxY}];
+    }
+
+    /**
+     *
+     * Get the minimum x value.
+     * @readonly
+     * @returns {Number}
+     */
+    get minX() {
+        return this._minX || 0;
+    }
+
+    /**
+     *
+     * Get the maximum x value.
+     * @readonly
+     * @returns {Number}
+     */
+    get maxX() {
+        return this._maxX || 0;
+    }
+
+    /**
+     *
+     * Get the minimum y value.
+     * @readonly
+     * @returns {Number}
+     */
+    get minY() {
+        return this._minY || 0;
+    }
+
+    /**
+     *
+     * Get the maximum y value.
+     * @readonly
+     * @returns {Number}
+     */
+    get maxY() {
+        return this._maxY || 0;
     }
 
     /**
@@ -137,7 +177,7 @@ class PolygonPoints {
         for (let y = 0, i = 0; y < width; y++) {
             for (let x = 0; x < width; x++, i++) {
                 if (this.containsPoint(x, y) === true) {
-                    buffer[i] = true;
+                    buffer[i] = 1;
                     count++;
                 }
             }
