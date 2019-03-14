@@ -24,4 +24,7 @@ polygonPoints.pointsLength;//returns 10000
 
 //set vertexes after creating polygonPoints object
 polygonPoints.vertexes = [{x: 0, y: 0}, {x: 0, y: 100}, {x: 100, y: 100}, {x: 100, y: 0}];
+
+//get minX, maxX, minY, and maxY unsigned integers of bounding box
+polygonPoints.minX, polygonPoints.maxX, polygonPoints.minY, polygonPoints.maxY;
 ```
