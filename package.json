@@ -1,6 +1,6 @@
 {
   "name": "polygon-points",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "Determine if an x y coordinate exists in a polygon.",
   "main": "index.js",
   "scripts": {
