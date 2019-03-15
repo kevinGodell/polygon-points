@@ -125,8 +125,8 @@ class PolygonPoints {
      */
     _countPointsInPolygon() {
         this._pointsLength = 0;
-        for (let y = this._minY; y < this._maxY; y++) {
-            for (let x = this._minX; x < this._maxX; x++) {
+        for (let y = this._minY; y <= this._maxY; y++) {
+            for (let x = this._minX; x <= this._maxX; x++) {
                 if (this.containsPoint(x, y) === true) {
                     this._pointsLength++;
                 }
@@ -155,6 +155,14 @@ class PolygonPoints {
             const yi = array[i].y;
             const xj = array[j].x;
             const yj = array[j].y;
+            if ((xi === x && yi === y) || (xj === x && yj === y)) {
+                // point is on corner
+                return true;
+            }
+            if (Math.hypot(xj - xi, yj - yi) === Math.hypot(xj - x, yj - y) + Math.hypot(xi - x, yi - y)) {
+                // point is on perimeter
+                return true;
+            }
             const intersect = ((yi > y) !== (yj > y)) && (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
             if (intersect) {
                 inside = !inside;
@@ -174,15 +182,23 @@ class PolygonPoints {
         const length = width * height;
         const buffer = Buffer.alloc(length, 0);
         let count = 0;
+        let minX = width;
+        let maxX = 0;
+        let minY = height;
+        let maxY = 0;
         for (let y = 0, i = 0; y < width; y++) {
             for (let x = 0; x < width; x++, i++) {
                 if (this.containsPoint(x, y) === true) {
+                    minX = Math.min(minX, x);
+                    maxX = Math.max(maxX, x);
+                    minY = Math.min(minY, y);
+                    maxY = Math.max(maxY, y);
                     buffer[i] = 1;
                     count++;
                 }
             }
         }
-        return {buffer: buffer, count: count, length: length};
+        return {buffer: buffer, count: count, length: length, minX: minX, maxX: maxX, minY: minY, maxY: maxY};
     }
 }
 
