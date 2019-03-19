@@ -186,7 +186,7 @@ class PolygonPoints {
         let maxX = 0;
         let minY = height;
         let maxY = 0;
-        for (let y = 0, i = 0; y < width; y++) {
+        for (let y = 0, i = 0; y < height; y++) {
             for (let x = 0; x < width; x++, i++) {
                 if (this.containsPoint(x, y) === true) {
                     minX = Math.min(minX, x);
